@@ -1,12 +1,9 @@
 <template>
   <div id="app">    
-    <city-select></city-select>   
+    <city-select :province.sync="province" :city.sync="city" :district.sync="district"></city-select>   
     <p>
     地址：{{province}}-{{city}}-{{district}}
-    </p>
-    <p>
-    代号：{{provinceCode}}-{{cityCode}}-{{districtCode}}
-    </p>
+    </p>   
   </div>
 </template>
 
@@ -26,21 +23,7 @@ export default {
   }, 
   components:{
     citySelect
-  },
-  events:{
-    provinceChange(province){        
-      this.province = province && province.name;
-      this.provinceCode = province && province.code;
-    },
-    cityChange(city){     
-      this.city = city && city.name || '';
-      this.cityCode = city && city.code || '';
-    },
-    districtChange(district){     
-      this.district = district && district.name || '';
-      this.districtCode = district && district.code || '';
-    }
-  }
+  } 
 }
 </script>
 
