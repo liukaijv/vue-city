@@ -17,7 +17,7 @@
 <script>
 	import citydata  from '../lib/citydata.json';
 	export default {
-		ready(){
+		ready(){			
 			this.provinces=citydata;
 			let seletedProvince = this.provinces.filter(function(item){
 				return item[this.valueType] == this.province;
@@ -59,33 +59,33 @@
 			}
 		},	
 		watch:{
-			province(){
+			province(){				
 				let seletedItem = this.provinces.filter(function(item){
 					return item[this.valueType] == this.province;
 				}.bind(this));			
 				if(seletedItem.length){
 					this.cities = seletedItem[0]['children'];
-					this.city = this.cities[0][this.valueType];
+					this.city = this.city?this.city:this.cities[0][this.valueType];
 				}else{
 					this.city = '';
 					this.cities = [];
 				}			
 				this.$dispatch('provinceChange',seletedItem[0]);			
 			},
-			city(){
+			city(){				
 				let seletedItem = this.cities.filter(function(item){
 					return item[this.valueType] == this.city;
 				}.bind(this));	
 				if(seletedItem.length){
-					this.districts = seletedItem[0]['children'];
-					this.district = this.districts[0][this.valueType];
+					this.districts = seletedItem[0]['children'];					
+					this.district = this.district?this.district:this.districts[0][this.valueType];
 				}else{
 					this.district = '';
 					this.districts = [];
 				}				
 				this.$dispatch('cityChange', seletedItem[0]);			
 			},
-			district(){
+			district(){				
 				let seletedItem = this.districts.filter(function(item){
 					return item[this.valueType] == this.district;
 				}.bind(this));						
